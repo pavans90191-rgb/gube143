@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Realistic Surprise 🐾</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #fdf2f2;
+            margin: 0;
+            font-family: 'Georgia', serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        /* The Box/Envelope */
+        #gift-box {
+            font-size: 80px;
+            transition: transform 0.3s ease;
+        }
+
+        #gift-box:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* The Surprise Layout */
+        #content {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Realistic Photo Styling (Polaroid Style) */
+        .photo-frame {
+            background: white;
+            padding: 15px 15px 40px 15px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            border-radius: 5px;
+            transform: rotate(-3deg);
+            transition: transform 0.5s;
+        }
+
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .cat-photo {
+            width: 300px;
+            height: auto;
+            display: block;
+            border: 1px solid #ddd;
+        }
+
+        h1 {
+            color: #4a4a4a;
+            margin-top: 30px;
+            font-style: italic;
+        }
+
+        p {
+            color: #777;
+            font-size: 1.1rem;
+        }
+
+        /* Heart Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .floating-heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 20px;
+            animation: float 4s infinite linear;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" onclick="openSurprise()">
+        <div id="gift-box">🎁</div>
+
+        <div id="content">
+            <div class="photo-frame">
+                <img src="gube.jpg.jpeg" 
+                     alt="Realistic Beautiful Cat" 
+                     class="cat-photo">
+            </div>
+            <h1>"gube...💗 i will kill you !"</h1> 
+            <p>If you don't message me i will kill you, <br>Just a little reminder of how special you are.</p>
+        </div>
+    </div>
+
+    <script>
+        function openSurprise() {
+            // Hide the gift box
+            document.getElementById('gift-box').style.display = 'none';
+            // Show the cat and message
+            document.getElementById('content').style.display = 'flex';
+            // Change background
+            document.body.style.background = "#fff";
+
+            // Start heart shower
+            for(let i = 0; i < 20; i++) {
+                createHeart();
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            heart.style.delay = Math.random() * 2 + 's';
+            document.body.appendChild(heart);
+        }
+    </script>
+</body>
+</html>
